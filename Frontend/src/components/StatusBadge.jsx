@@ -1,10 +1,17 @@
 import React from 'react';
 
 const StatusBadge = ({ status }) => {
+  // Convert status to Title Case (e.g., 'pending' -> 'Pending', 'in progress' -> 'In Progress')
+  const formattedStatus = (status || 'Pending')
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
   let bgColor = '';
   let textColor = '';
 
-  switch (status) {
+  switch (formattedStatus) {
     case 'Pending':
       bgColor = 'bg-yellow-100';
       textColor = 'text-yellow-800';
@@ -24,7 +31,7 @@ const StatusBadge = ({ status }) => {
 
   return (
     <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${bgColor} ${textColor}`}>
-      {status}
+      {formattedStatus}
     </span>
   );
 };

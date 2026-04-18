@@ -9,7 +9,8 @@ const addComplaint = asyncHandeler(async(req,res)=>{
     const createdComplaint = await Complaint.create({
         department: department,
         complaint: complaint,
-        student: req.cookies?.objectId
+        student: req.cookies?.objectId,
+        status: "pending"
     })
     if(!createdComplaint) throw new apiError(500,"error in adding complaint");
     res.status(200).json(

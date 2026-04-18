@@ -13,6 +13,11 @@ const complaintSchema = mongoose.Schema({
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Students"
+    },
+    status:{
+        type: String,
+        lowercase: true,
+        required: true
     }
 })
 export const Complaint = mongoose.model("Complaint",complaintSchema)
