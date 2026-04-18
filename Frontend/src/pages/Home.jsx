@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SubmitComplaintBar from '../components/SubmitComplaintBar';
 import DepartmentCard from '../components/DepartmentCard';
-import { Shield, Utensils, Home as HomeIcon } from 'lucide-react';
+import { Shield, Utensils, Home as HomeIcon, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // --- MOCK DATA ---
 // const initialMockData = {
@@ -27,6 +28,7 @@ const Home = () => {
     Security: []
   });
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // FETCH DATA ON MOUNT
   useEffect(() => {
@@ -81,18 +83,36 @@ const Home = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch('http://localhost:3000/student/logout', { method: 'POST', credentials: 'include' });
+      navigate('/login');
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50/50 pt-8 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-6xl mx-auto flex flex-col gap-8">
         
         {/* Header Section */}
-        <header className="mb-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-            Campus Platform
-          </h1>
-          <p className="text-gray-500 mt-2 text-lg">
-            Manage and track campus complaints across departments.
-          </p>
+        <header className="mb-2 flex justify-between items-start">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+              Campus Platform
+            </h1>
+            <p className="text-gray-500 mt-2 text-lg">
+              Manage and track campus complaints across departments.
+            </p>
+          </div>
+          <button 
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-lg shadow-sm transition-colors font-medium"
+          >
+            <LogOut className="w-4 h-4" />
+            Logout
+          </button>
         </header>
 
         {/* Top Section: Submit Bar */}

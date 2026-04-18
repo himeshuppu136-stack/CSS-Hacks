@@ -10,10 +10,8 @@ const SubmitComplaintBar = ({ onSubmit }) => {
     if (!description.trim() || !department) return;
 
     onSubmit({
-      description,
-      department,
-      date: new Date().toISOString(),
-      status: 'Pending',
+      complaint: description,
+      department: department.toLowerCase()
     });
 
     // Reset form after submission
