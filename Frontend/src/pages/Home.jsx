@@ -33,14 +33,14 @@ const Home = () => {
     const fetchComplaints = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/complaint/fetchComplaints", {
+        const response = await fetch("http://localhost:3000/complaint/fetchComplaint", {
             method: "GET",
             credentials: "include"
         });
 
         const result = await response.json();
       setTimeout(() => {
-        setComplaints(result);
+        setComplaints(result.data);
         setLoading(false);
       }, 800); 
     }
@@ -66,6 +66,7 @@ const Home = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(newComplaintData),
       });
 
@@ -76,8 +77,8 @@ const Home = () => {
       alert('Complaint successfully submitted!');
     } catch (error) {
       console.error("Error submitting complaint:", error);
-    
-    alert('Complaint successfully submitted!');
+      alert('Error submitting complaint!');
+    }
   };
 
   return (
@@ -154,5 +155,5 @@ const Home = () => {
     </div>
   );
 };
-}
+
 export default Home;

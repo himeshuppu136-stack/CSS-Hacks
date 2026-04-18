@@ -12,16 +12,16 @@ const DepartmentCard = ({ departmentName, complaints }) => {
         {complaints && complaints.length > 0 ? (
           <ul className="divide-y divide-gray-100">
             {complaints.map((complaint) => (
-              <li key={complaint.id} className="p-6 hover:bg-gray-50/50 transition-colors">
+              <li key={complaint._id || complaint.id} className="p-6 hover:bg-gray-50/50 transition-colors">
                 <div className="flex justify-between items-start mb-2 gap-4">
                   <p className="text-gray-800 font-medium line-clamp-2 leading-snug flex-1">
-                    {complaint.description}
+                    {complaint.complaint || complaint.description}
                   </p>
-                  <StatusBadge status={complaint.status} />
+                  <StatusBadge status={complaint.status || 'Pending'} />
                 </div>
                 <div className="flex items-center text-sm text-gray-500 mt-3">
                   <Calendar className="w-4 h-4 mr-1.5 opacity-70" />
-                  <span>{new Date(complaint.date).toLocaleDateString()}</span>
+                  <span>{new Date(complaint.createdAt || complaint.date || new Date()).toLocaleDateString()}</span>
                 </div>
               </li>
             ))}

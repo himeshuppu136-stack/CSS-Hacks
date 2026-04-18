@@ -38,9 +38,9 @@ const getRecentComplaints = asyncHandeler(async (req, res) => {
     ]);
 
     const latestComplaints = {
-        mess,
-        hostel,
-        security
+        Mess,
+        Hostel,
+        Security
     };
 
     res.status(200).json(
