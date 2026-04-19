@@ -17,7 +17,8 @@ const complaintSchema = mongoose.Schema({
     status:{
         type: String,
         lowercase: true,
-        required: true
+        required: true,
+        default: "pending"
     }
 })
 export const Complaint = mongoose.model("Complaint",complaintSchema)

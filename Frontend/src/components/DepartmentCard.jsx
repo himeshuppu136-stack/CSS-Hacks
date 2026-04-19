@@ -1,5 +1,5 @@
 import React from 'react';
-import StatusBadge from './StatusBadge';
+
 import { Calendar } from 'lucide-react';
 
 const DepartmentCard = ({ departmentName, complaints }) => {
@@ -17,7 +17,6 @@ const DepartmentCard = ({ departmentName, complaints }) => {
                   <p className="text-gray-800 font-medium line-clamp-2 leading-snug flex-1">
                     {complaint.complaint || complaint.description}
                   </p>
-                  <StatusBadge status={complaint.status || 'Pending'} />
                 </div>
                 <div className="flex items-center text-sm text-gray-500 mt-3">
                   <Calendar className="w-4 h-4 mr-1.5 opacity-70" />

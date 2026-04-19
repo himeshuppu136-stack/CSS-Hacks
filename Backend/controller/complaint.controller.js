@@ -49,8 +49,34 @@ const getRecentComplaints = asyncHandeler(async (req, res) => {
     );
 });
 
+const getDepartmentComplaints = asyncHandeler(async(req,res)=>{
+    const {department} = req.params;
+    const complaints = await Complaint.find({department: department}).sort({ createdAt: -1 });
+    res.status(200).json(
+        new apiResponse(200,complaints,"complaints fetched")
+    )
+})
+
+const changeStatus = asyncHandeler(async(req,res)=>{
+    const { complaintId, status } = req.body;
+    const complaint = await Complaint.findByIdAndUpdate(
+        complaintId,
+        {
+            $set:{
+                status: status || "solved"
+            }
+        },
+        { new: true }
+    )
+    res.status(200).json(
+        new apiResponse(200, complaint, "status changed")
+    )
+})
+
 export{
     addComplaint,
     deleteComplaint,
-    getRecentComplaints
+    getRecentComplaints,
+    getDepartmentComplaints,
+    changeStatus
 }

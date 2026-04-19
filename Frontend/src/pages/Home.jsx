@@ -3,24 +3,6 @@ import SubmitComplaintBar from '../components/SubmitComplaintBar';
 import DepartmentCard from '../components/DepartmentCard';
 import { Shield, Utensils, Home as HomeIcon, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-// --- MOCK DATA ---
-// const initialMockData = {
-//   Mess: [
-//     { id: 1, description: 'Food quality has been poor for the last three days.', date: '2026-04-14T10:00:00Z', status: 'Pending' },
-//     { id: 2, description: 'Water cooler near block B mess is not working.', date: '2026-04-12T14:30:00Z', status: 'In Progress' },
-//     { id: 3, description: 'Dinner was served very late yesterday.', date: '2026-04-10T09:15:00Z', status: 'Resolved' },
-//   ],
-//   Hostel: [
-//     { id: 4, description: 'AC in Room 402 is making loud noises.', date: '2026-04-15T08:00:00Z', status: 'Pending' },
-//     { id: 5, description: 'Wi-Fi keeps disconnecting on the 2nd floor.', date: '2026-04-13T16:45:00Z', status: 'In Progress' },
-//   ],
-//   Security: [
-//     { id: 6, description: 'Main gate entry log is missing some entries.', date: '2026-04-14T20:20:00Z', status: 'Resolved' },
-//     { id: 7, description: 'Street light near the back gate is broken.', date: '2026-04-11T19:00:00Z', status: 'In Progress' },
-//   ]
-// };
-
 const Home = () => {
   const [complaints, setComplaints] = useState({
     Mess: [],
